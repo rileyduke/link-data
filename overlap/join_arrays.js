@@ -1,6 +1,9 @@
 // append array b to array a
 // if there is overlap, merge the overlapped portion
 function joinArrays(a, b) {
+    if (a == null && b == null) return []
+    if (a == null) return b
+    if (b == null) return a
     if (a.length == 0) return b;
     if (b.length == 0) return a;
 
@@ -36,9 +39,16 @@ const input7 = [5, 5, 1, 2];
 const input8 = [5, 1, 7, 8];
 
 console.log(joinArrays(input1, input2))
+console.log(joinArrays(input2, input1))
 console.log(joinArrays(input1, input3))
 console.log(joinArrays(input1, input4))
 console.log(joinArrays(input1, input4_2))
 console.log(joinArrays(input5, input6))
 console.log(joinArrays(input7, input8))
+console.log(joinArrays(input8, input7))
+
+console.log(joinArrays(null, null))
+console.log(joinArrays(input1, null))
+console.log(joinArrays(null, input1))
+console.log(joinArrays([], input1))
 
