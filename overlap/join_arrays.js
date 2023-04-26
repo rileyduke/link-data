@@ -51,4 +51,6 @@ console.log(joinArrays(null, null))
 console.log(joinArrays(input1, null))
 console.log(joinArrays(null, input1))
 console.log(joinArrays([], input1))
+console.log(joinArrays(input1, []))
+console.log(joinArrays([], []))
 
