@@ -3,17 +3,15 @@ const fs = require('fs')
 var path = require('path')
 
 const helper = require('./helper.js')
+const logg = require('./logg.js')
 
 var api_url = 'https://hiring-ld-takehome.herokuapp.com/transactions';
 var file_directory = './output/'
 var file_path = './fallback.json'
 
 function getRange(fromDate, toDate) {
-    console.log("from: " + fromDate)
-    console.log("to: " + toDate)
     let from = new Date(fromDate)
     let to = new Date(toDate)
-    console.log(helper.differenceInDays(from, to))
     if (helper.differenceInDays(from, to) < 1) {
         console.log("No difference in days")
         return
@@ -50,6 +48,8 @@ function getRange(fromDate, toDate) {
                 fs.appendFileSync(file_path, "\n")
                 fs.appendFileSync(file_path, helper.recordToCsv(x))
             });
+
+            logg.info("from: " + fromDate + ", to: " + toDate + " (" + helper.differenceInDays(from, to) + ")")
         });
     });
 }
@@ -61,4 +61,4 @@ const now = new Date().getTime();
 file_path = path.join(file_directory, now + ".json")
 
 fs.writeFileSync(file_path, 'Date,Amount,Description');
-getRange('2022-01-01', '2023-03-05')
+getRange('2022-01-01', '2022-05-05')
